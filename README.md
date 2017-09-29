@@ -1,2 +1,8 @@
-# EconometricsCode
-Stata and other codes for econometrics course.
+# 计量经济学代码
+这是上海对外经贸大学司继春老师研究生课程《高级计量经济学》课程的配套代码展示仓库，主要包括：
+## Stata数据整理
+## Stata描述性统计
+## 大数定律和中心极限定理
+## 假设检验
+## 线性回归相关
+## 工具变量相关
