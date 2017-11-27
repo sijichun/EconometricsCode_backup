@@ -1,5 +1,5 @@
 // file: reg_with_dummy.do
-use cfps_adult, clear
+use datasets/cfps_adult, clear
 keep cfps_gender p_income
 drop if p_income<0
 bysort cfps_gender: outreg2 using reg_with_dummy_su.tex,/*
