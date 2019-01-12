@@ -20,8 +20,8 @@ program define dgp, rclass
 end
 
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-							*/ ,reps(1000):dgp
+        */ ,reps(1000):dgp
 su
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-						*/,reps(1000):dgp, robust
+        */,reps(1000):dgp, robust
 su
