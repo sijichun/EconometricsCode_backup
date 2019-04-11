@@ -36,6 +36,7 @@ twoway (connected y0 t, msymbol(triangle) msize(small))/*
 	*/ (scatter y t,  msymbol(circle))/*
 	*/ , title("无动态效应") legend(rows(2)) scheme(s1mono)
 graph export DID_dynamic_trend_linear.pdf, replace
+graph export DID_dynamic_trend_linear.png, replace
 ************************具有动态效应*******************************
 keep t t2 d
 ** 政策之前的y
@@ -66,3 +67,4 @@ twoway (connected y0 t, msymbol(triangle) msize(small))/*
 	*/ (scatter y t,  msymbol(circle))/*
 	*/ , title("动态效应") legend(rows(2)) scheme(s1mono)
 graph export DID_dynamic_trend_dynamic.pdf, replace
+graph export DID_dynamic_trend_dynamic.png, replace

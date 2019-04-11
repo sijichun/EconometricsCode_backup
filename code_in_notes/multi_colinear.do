@@ -1,4 +1,5 @@
 // file: multi_colinear.do
+set seed 19880505
 cap program drop dgp
 program define dgp, rclass
 	syntax [, obs(integer 20) b(real 0) mc(real 1)]
@@ -16,7 +17,7 @@ program define dgp, rclass
 	quietly: reg `y' `x1' `x2'
 	return scalar b=_b[`x1']
 	return scalar se=_se[`x1']
-	if abs(_b[`x1']/_se[`x1'])>=1.96 {
+	if abs(_b[`x1']/_se[`x1'])>=invt(`obs'-3,0.975) {
 		return scalar rejected=1
 	}
 	else {
@@ -25,17 +26,17 @@ program define dgp, rclass
 end
 ** multicolinearty, size
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-							*/ ,reps(5000):dgp
+					*/ ,reps(2000):dgp
 su
 ** multicolinearty, power
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-							*/ ,reps(5000):dgp, b(1)
+					*/ ,reps(2000):dgp, b(1)
 su
 ** no multicolinearty, power
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-							*/ ,reps(5000):dgp, b(1) mc(0)
+					*/ ,reps(2000):dgp, b(1) mc(0)
 su
 ** multicolinearty, power with large N
 simulate rejected=r(rejected) b=r(b) se=r(se)/*
-							*/ ,reps(5000):dgp, b(1) obs(100)
+					*/ ,reps(2000):dgp, b(1) obs(100)
 su
