@@ -1,6 +1,5 @@
 clear
 set more off
-cd  "/Users/aragorn/Working/Econometrics/EconometricsCode/code_in_notes/"
 use "datasets/Divorce-Wolfers-AER.dta"
 ** state dummies
 egen state=group(st)
