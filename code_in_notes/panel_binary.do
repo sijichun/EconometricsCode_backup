@@ -29,17 +29,17 @@ drop temp
 bysort sortvara: outreg2 using soep_female_labor_descr.tex, replace sum(log) keep(employment `control1' `fixed') eqkeep(mean sd min max)
 *** regression ***
 probit employment `control1' `fixed' `yeardummy'
-margins, dydx(*)
+margins, dydx(*) post
 outreg2 using soep_female_labor_res.tex, replace ctitle("Probit") keep(`control1' `fixed')
 logit employment `control1' `fixed' `yeardummy'
-margins, dydx(*)
+margins, dydx(*) post
 outreg2 using soep_female_labor_res.tex, append ctitle("Logit") keep(`control1' `fixed')
 xtprobit employment `control1' `fixed' `yeardummy'
-margins, dydx(*)
+margins, dydx(*) post
 outreg2 using soep_female_labor_res.tex, append ctitle("Random Effects Probit") keep(`control1' `fixed')
 xtprobit employment `control1' `controlmean1' `fixed'  `yeardummy'
-margins, dydx(*)
+margins, dydx(*) post
 outreg2 using soep_female_labor_res.tex, append ctitle("Chamberlain Probit") keep(`control1' `fixed' MaxChld6)
 xtlogit employment `control2'  `yeardummy', fe
-margins, dydx(*)
+margins, dydx(*) post
 outreg2 using soep_female_labor_res.tex, append ctitle("Fixed Effects Logit") keep(`control2')

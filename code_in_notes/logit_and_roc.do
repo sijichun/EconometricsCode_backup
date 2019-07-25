@@ -9,9 +9,24 @@ gen exit_labor=employ2014==3
 gen age=2014-cfps_birth
 gen age2=age^2
 gen urban_hukou=qa301==3
+// odds ratio
+tab exit_labor cfps_gender
 // 回归并预测
 local x "age age2 cfps_gender urban_hukou i.provcd14 i.te4"
+local reportvar "age age2 cfps_gender urban_hukou"
+logit exit_labor cfps_gender
+margins, dydx(*) post
+outreg2 using logit_roc.doc, replace keep(`reportvar') ctitle(Logit)
+logistic exit_labor cfps_gender
+outreg2 using logit_roc.doc, append keep(`reportvar') ctitle(Logistic)
 logit exit_labor `x'
+margins, dydx(*) post
+outreg2 using logit_roc.doc, append keep(`reportvar') ctitle(Logit)
+probit exit_labor `x'
+margins, dydx(*) post
+outreg2 using logit_roc.doc, append keep(`reportvar') ctitle(Probit)
+logistic exit_labor `x'
+outreg2 using logit_roc.doc, append keep(`reportvar') ctitle(Logistic)
 // 如果用probit模型：probit exit_labor `x'
 predict p_exit // 预测概率
 // 计算cutoff=0.5时的查准率、查全率
