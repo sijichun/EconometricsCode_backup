@@ -1,6 +1,5 @@
 clear
 set more off
-cd /Users/aragorn/Working/Econometrics/EconometricsCode/code_in_notes
 use datasets/citydata.dta
 ** 声明面板数据
 xtset CityCode Year
