@@ -1,3 +1,4 @@
+// weighted_ols.do
 clear
 set more off
 // 生成数据
@@ -5,6 +6,8 @@ set seed 19880505
 set obs 300
 gen x=2*runiform()
 gen y=exp(sin(x^3))+rnormal()
+gen y_true=exp(sin(x^3))
+label variable y_true "True function"
 //回归
 gen x2=x^2
 gen x3=x^3
@@ -21,5 +24,6 @@ label variable yhat_weighted "Weighted"
 sort x
 twoway (scatter y x) /*
     */(line yhat_unweighted x) /*
+	*/(line y_true x) /*
     */(line yhat_weighted x) 
-graph export wls.pdf
+graph export wls.pdf, replace
