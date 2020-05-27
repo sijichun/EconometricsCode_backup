@@ -44,14 +44,14 @@ foreach v of varlist `polynomial_control'{
 		local std_polynomial_control "`std_polynomial_control' std_`v'"
 	}
 }
-lasso logit treat `std_polynomial_control'
+lasso logit treat `controls', grid(5)
 local post_vars=e(allvars_sel)
+di "`post_vars'"
 //post-estimation
-logit e(`post_vars')
+logit treat e(`post_vars')
 predict ps_4
-
 //matching
-teffects psmatch (re78) (`post_vars')
+teffects psmatch (re78) (treat `post_vars')
 //使用指定的propensity score
 gen trans_ps2=log(ps_2/(1-ps_2))
 bysort treat: su ps_2
