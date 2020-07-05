@@ -16,7 +16,7 @@ gen rs=s*treat
 gen rs2=rs^2
 gen rs3=rs^3
 
-//全样本，多项式
+//全样本，多项式，不要使用
 reg INVSALES treat ls rs, cluster(score)
 reg INVSALES treat ls ls2 rs rs2, cluster(score)
 reg INVSALES treat ls ls2 ls3 rs rs2 rs3, cluster(score)
@@ -38,4 +38,4 @@ twoway (scatter INVSALES s if s<10 & s>-10)/*
 	*/ (line l_pred_INVSALES s if s<=0 & s>-10)/*
 	*/ (line r_pred_INVSALES s if s>=0 & s<10)
 // manipulation检验
-rddensity s, c(0)
+rddensity s, c(0) plot
