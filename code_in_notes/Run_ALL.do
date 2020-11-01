@@ -5,3 +5,4 @@ do logit_and_roc.do
 do nls_mpc.do
 do weighted_ols.do
 do qreg_outlier.do
+do hcw_lasso.do
