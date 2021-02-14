@@ -1,6 +1,6 @@
 clear
 set more off
-use disease_gender_gap
+use datasets/disease_gender_gap
 *****
 ** 变量说明
 * year：调查的轮数
